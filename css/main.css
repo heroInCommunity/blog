@@ -156,6 +156,49 @@ footer {
 	height: 245px;
 }
 
+.article-content {
+	min-height: 734px;
+}
+
+.article-date {
+	position: relative;
+	float: left;
+}
+
+.article-date-name {
+	font-size: 12px;
+}
+
+.article-titles {
+	overflow: auto;
+	max-height: 407px;
+}
+
+    
+::-webkit-scrollbar {  
+    width: 12px;  
+}  
+::-webkit-scrollbar-track {  
+    background-color: #eaeaea;  
+    border-left: 1px solid #ccc;  
+}  
+::-webkit-scrollbar-thumb {  
+    background-color: #ccc;  
+}  
+::-webkit-scrollbar-thumb:hover {  
+    background-color: #aaa;  
+}  
+
+scrollbar-base-color: #C0C0C0;
+scrollbar-base-color: #C0C0C0;
+scrollbar-3dlight-color: #C0C0C0;
+scrollbar-highlight-color: #C0C0C0;
+scrollbar-track-color: #EBEBEB;
+scrollbar-arrow-color: black;
+scrollbar-shadow-color: #C0C0C0;
+scrollbar-dark-shadow-color: #C0C0C0;
+
+
 /* Bootstrap */
 
 @media screen and (min-width: 768px) {
