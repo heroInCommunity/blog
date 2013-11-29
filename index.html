@@ -10,6 +10,8 @@
 		<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
 		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/selectize.css">
+		<link rel="stylesheet" href="css/selectize.bootstrap3.css">
 		<link rel="stylesheet" href="css/main.css">
 		<script src="js/vendor/modernizr-2.7.0.min.js"></script>
 	</head>
@@ -51,9 +53,7 @@
 				
 				<div class="col-md-3 col-xs-4">
 					<div class="list-group search-words-group well">
-						<div class="list-group-item">
-							Abir
-						</div>
+						<input type="text" id="search-word" placeholder="Input search keyword here" class="form-control selectized">
 					</div>
 
 					<div class="sidebar-offcanvas well" id="sidebar" role="navigation">
@@ -62,28 +62,28 @@
 								<div class="article-date">2012-04-8:</div>&nbsp;Article Jquery Basics
 							</a>
 							<a href="#" class="list-group-item article-date-name">
-								<div class="article-date">2012-04-8: </div>&nbsp;Google scroogle people
+								<div class="article-date">2012-03-1:</div>&nbsp;Google scroogle people
 							</a>
 							<a href="#" class="list-group-item article-date-name">
-								<div class="article-date">2012-04-8: </div>&nbsp;Microsoft was scroogled by Google
+								<div class="article-date">2012-02-18:</div>&nbsp;Microsoft was scroogled by Google
 							</a>
 							<a href="#" class="list-group-item article-date-name">
-								<div class="article-date">2012-04-8: </div>&nbsp;Google scroogled Microsoft
+								<div class="article-date">2012-01-28:</div>&nbsp;Google scroogled Microsoft
 							</a>
 							<a href="#" class="list-group-item article-date-name">
-								<div class="article-date">2012-04-8: </div>&nbsp;Google scroogled Microsoft again creating this article with such a long title
+								<div class="article-date">2011-10-4:</div>&nbsp;Google scroogled Microsoft again creating this article with such a long title
 							</a>
 							<a href="#" class="list-group-item article-date-name">
-								<div class="article-date">2012-04-8: </div>&nbsp;Microsoft was scroogled by Google again
+								<div class="article-date">2011-09-11:</div>&nbsp;Microsoft was scroogled by Google again
 							</a>
 							<a href="#" class="list-group-item article-date-name">
-								<div class="article-date">2012-04-8: </div>&nbsp;Microsoft is scroogled by Google time after time
+								<div class="article-date">2011-09-2:</div>&nbsp;Microsoft is scroogled by Google time after time
 							</a>
 							<a href="#" class="list-group-item article-date-name">
-								<div class="article-date">2012-04-8: </div>&nbsp;Microsoft annoyed being scroogled by Google time after time
+								<div class="article-date">2011-08-28:</div>&nbsp;Microsoft annoyed being scroogled by Google time after time
 							</a>
 							<a href="#" class="list-group-item article-date-name">
-								<div class="article-date">2012-04-8: </div>&nbsp;Microsoft annoyed being scroogled by Google time after time
+								<div class="article-date">2011-07-6:</div>&nbsp;Microsoft annoyed being scroogled by Google time after time
 							</a>
 						</div>
 					</div><!--/span-->
@@ -135,8 +135,9 @@
 			window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
 		</script>
 		<script src="js/plugins.js"></script>
-		<script src="js/main.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/vendor/selectize.js"></script>
+		<script src="js/main.js"></script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
