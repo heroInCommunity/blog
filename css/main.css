@@ -204,7 +204,7 @@ input.selectized {
 
 /* Selectize */
 .selectize-input {
-	max-height: 150px;
+	max-height: 210px;
 	overflow-y: auto;	
 }
 .search-words-group .value {
