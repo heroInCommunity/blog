@@ -211,6 +211,29 @@ input.selectized {
 	overflow: auto;
 	max-width: 275px;
 }
+
+.profile_image_wrapper {
+	height: 250px;
+	width: 270px;
+	margin-bottom: 25px;
+}
+.profile_image_inner {
+	vertical-align: middle;
+	text-align: center;
+	width: 270px;
+}
+.profile_image {
+	max-width: 250px;
+	max-height: 250px;
+}
+.about_contacts {
+	text-align: left;
+}
+.about_name {
+	margin-top: 5px;
+	margin-bottom: 25px;
+	text-align: center;
+}
     
 
 /* Bootstrap */
