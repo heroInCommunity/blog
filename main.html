@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/selectize.css">
 		<link rel="stylesheet" href="css/selectize.bootstrap3.css">
+		<link rel="stylesheet" href="css/default.css">
+		<link rel="stylesheet" href="css/monokai.css">
 		<link rel="stylesheet" href="css/main.css">
 		<script src="js/vendor/modernizr-2.7.0.min.js"></script>
 	</head>
@@ -120,6 +122,14 @@
 							<p>
 								Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
 							</p>
+							<pre>
+								<code class="javascript">
+var str = "something"
+// эквивалентные записи
+var test = Boolean(str)
+var test = !!str
+								</code>
+							</pre>
 							<p>
 								Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
 							</p>
@@ -154,6 +164,8 @@
 		<script src="js/plugins.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/vendor/selectize.js"></script>
+		<script src="js/vendor/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
 		<script src="js/main.js"></script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
