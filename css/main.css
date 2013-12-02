@@ -212,29 +212,33 @@ input.selectized {
 	max-width: 275px;
 }
 
-.profile_image_wrapper {
+.profile-image-wrapper {
 	height: 250px;
 	width: 270px;
 	margin-bottom: 25px;
 }
-.profile_image_inner {
+.profile-image-inner {
 	vertical-align: middle;
 	text-align: center;
 	width: 270px;
 }
-.profile_image {
+.profile-image {
 	max-width: 250px;
 	max-height: 250px;
 }
-.about_contacts {
+.about-contacts {
 	text-align: left;
 }
-.about_name {
+.about-name {
 	margin-top: 5px;
 	margin-bottom: 25px;
 	text-align: center;
 }
-    
+.fullscreen-mode {
+	font-size: 14px;
+	color: dimgrey;
+	cursor: pointer;
+}   
 
 /* Bootstrap */
 
