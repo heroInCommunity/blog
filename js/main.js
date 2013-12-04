@@ -62,7 +62,7 @@ $( document ).ready(function() {
 	var scrollBarSize = $('#scrollable > div').height();
 	$('#scrollable > div').css('top', '0px');
 	
-	$('#scrollable').bind('mousewheel', function(event) {		
+	$('#scrollable').bind('mousewheel', function(event) {			
 		if (scrolled <= event.delegateTarget.offsetTop) {
 			scrolled = event.delegateTarget.offsetTop;
 		}
@@ -101,8 +101,12 @@ $( document ).ready(function() {
 	var progressbarWidth = $('#progressbar_nav').width();
 	
 	$('#progressbar_nav').click(function(event) {
-		console.log(event);
+		//console.log(event);
+		var percent = event.offsetX / progressbarWidth * 100;
+		$('#progressbar').css('width', percent + '%');
 		
+		scrolled = percent * scrollBarSize / 100;
+		$('#scrollable > div').css('top', -scrolled + 'px');
 	});
 	
 });
