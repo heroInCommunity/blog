@@ -79,12 +79,14 @@ $( document ).ready(function() {
 	var scrollBarSize = $('#scrollable > div').height();
 	$('#scrollable > div').css('top', '0px');
 	
-	$('#scrollable').bind('mousewheel', function(event) {			
+	$('#scrollable').bind('mousewheel', 'touchend', function(event) {
+		//console.log(event);
+			
 		if (scrolled <= event.delegateTarget.offsetTop) {
 			scrolled = event.delegateTarget.offsetTop;
 		}
 		else if (scrolled >= $('#scrollable > div').height() - event.delegateTarget.offsetTop) {
-			if (event.originalEvent.deltaY > 0) {				
+			if (typeof event.originalEvent.deltaY != 'undefined' && event.originalEvent.deltaY > 0 || event.originalEvent.wheelDeltaY < 0) {				
 				scrolled = $('#scrollable > div').height();
 				$('#progressbar').css('width', '100%');			
 			}
@@ -98,7 +100,7 @@ $( document ).ready(function() {
 			return false;
 		}
 		
-		var scrollMove = event.originalEvent.deltaY;
+		var scrollMove = (typeof event.originalEvent.deltaY != 'undefined') ? event.originalEvent.deltaY : -event.originalEvent.wheelDeltaY;
 		scrolled += scrollMove;
 		
 		if (scrolled <= event.delegateTarget.offsetTop) {
