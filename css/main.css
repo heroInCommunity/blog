@@ -109,9 +109,7 @@ html {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
-	padding-top: 70px;
-	
-	scrollbar-base-color: #C0C0C0;
+	padding-top: 70px;	
 	scrollbar-base-color: #C0C0C0;
 	scrollbar-3dlight-color: #C0C0C0;
 	scrollbar-highlight-color: #C0C0C0;
@@ -180,8 +178,18 @@ footer {
 	height: 245px;
 }
 
-.article-content {
+.article {
 	min-height: 734px;
+}
+
+div.article-content {
+	overflow-y: hidden;
+	max-height: 434px;
+}
+
+h1.article-title {
+	margin: 0;
+	font-size: 50px;
 }
 
 .article-date {
@@ -200,6 +208,10 @@ footer {
 
 input.selectized {
 	display: none;
+}
+
+.progress {
+	cursor: pointer;
 }
 
 /* Selectize */
@@ -256,7 +268,7 @@ input.selectized {
 	
 	.container .jumbotron {
 		padding-top: 20px;
-		padding-bottom: 20px;
+		padding-bottom: 7px;
 	}
 }
 
