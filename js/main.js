@@ -24,6 +24,7 @@ $( document ).ready(function() {
 			return false;
 		}
 		isClicked = true;
+		var scrollBarSize = scrollableDiv.height();
 		
 		$(".selectize-input").fadeOut(500);
 		$('#page_left_bar').animate(
@@ -42,6 +43,7 @@ $( document ).ready(function() {
 			"linear",
 			function() {
 				isClicked = false;
+				scrollableDiv.css('top', (parseInt(scrollableDiv.css('top')) * scrollableDiv.height() / scrollBarSize) + 'px');
 			}
 		);
 		$(this).fadeOut(100);
@@ -53,6 +55,7 @@ $( document ).ready(function() {
 			return false;
 		}
 		isClicked = true;
+		var scrollBarSize = scrollableDiv.height();
 		
 		$(".selectize-input").fadeIn(1000);
 		$('#page_left_bar').animate(
@@ -64,6 +67,7 @@ $( document ).ready(function() {
 			"linear",
 			function() {
 				isClicked = false;
+				scrollableDiv.css('top', (parseInt(scrollableDiv.css('top')) * scrollableDiv.height() / scrollBarSize) + 'px');
 			}
 		);
 		$("#page_central_bar").animate(
@@ -82,10 +86,11 @@ $( document ).ready(function() {
 	var scrollableDiv = $('#scrollable > div');	
 	var progressBar = $('#progressbar');
 	var scrolled = 0;
-	var scrollBarSize = scrollableDiv.height();
 	scrollableDiv.css('top', '0px');
 	
 	$('#scrollable').bind('mousewheel touchend DOMMouseScroll', function(event) {
+		var scrollBarSize = scrollableDiv.height();
+		
 		if (scrolled <= event.delegateTarget.offsetTop) {
 			scrolled = event.delegateTarget.offsetTop;
 		}
@@ -129,12 +134,13 @@ $( document ).ready(function() {
 			return scrollEvent.originalEvent.detail * 30;
 		}
 		return undefined;
-	}
-	
-	var progressbarWidth = $('#progressbar_nav').width();
-	var scrollableHeight = $('#scrollable').height();
+	}	
 	
 	$('#progressbar_nav').click(function(event) {
+		var scrollBarSize = scrollableDiv.height();
+		var progressbarWidth = $('#progressbar_nav').width();
+		var scrollableHeight = $('#scrollable').height();
+		
 		var percent = getX(event) / progressbarWidth * 100;
 		progressBar.css('width', percent + '%');
 		
