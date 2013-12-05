@@ -264,6 +264,18 @@ input.selectized {
 		padding-top: 10px;
 		padding-bottom: 10px;
 	}
+	
+	.container {
+		width: 850px;
+	}
+	
+	.col-xs-4 {
+		width: 25%;
+	}
+	
+	.col-sm-9 {
+		width: 74%;
+	}
 }
 
 @media screen and (min-width: 1400px) {
