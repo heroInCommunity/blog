@@ -1,4 +1,6 @@
 $( document ).ready(function() {
+	
+	//search words on main page
 	$('#search-word').selectize({
 	    delimiter: ',',
 	    persist: false,
@@ -12,6 +14,7 @@ $( document ).ready(function() {
 	     maxItems: 12
 	});
 	
+	//switch between full and less view modes on main page
 	var centralBarWidth = $("#page_central_bar").outerWidth();
 	var leftBarWidth = $("#page_left_bar").outerWidth();
 	
@@ -74,7 +77,8 @@ $( document ).ready(function() {
 		$(this).fadeOut(100);
 		$('#clicker_full').fadeIn(100);
 	});
-		
+
+	//progress bar functionality on main page
 	var scrolled = 0;
 	var scrollBarSize = $('#scrollable > div').height();
 	$('#scrollable > div').css('top', '0px');
