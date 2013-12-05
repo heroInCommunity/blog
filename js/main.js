@@ -122,7 +122,7 @@ $( document ).ready(function() {
 	var scrollableHeight = $('#scrollable').height();
 	
 	$('#progressbar_nav').click(function(event) {
-		var percent = event.offsetX / progressbarWidth * 100;
+		var percent = getX(event) / progressbarWidth * 100;
 		progressBar.css('width', percent + '%');
 		
 		scrolled = percent * scrollBarSize / 100;
@@ -136,6 +136,17 @@ $( document ).ready(function() {
 			scrollableDiv.css('top', -scrolled + 'px');	
 		}
 	});
+	
+	function getX(clickEvent) {
+		if(typeof clickEvent.offsetX != 'undefined') {
+			return clickEvent.offsetX;
+		}
+		else if(typeof clickEvent.originalEvent.layerX != 'undefined') {
+			return clickEvent.originalEvent.layerX;
+		}
+		
+		return undefined;
+	}
 	
 });
 
