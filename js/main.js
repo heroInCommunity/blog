@@ -85,37 +85,34 @@ $( document ).ready(function() {
 	var scrollBarSize = scrollableDiv.height();
 	scrollableDiv.css('top', '0px');
 	
-	$('#scrollable').bind('mousewheel', 'touchend', function(event) {
-			
+	$('#scrollable').bind('mousewheel', 'touchend', function(event) {			
 		if (scrolled <= event.delegateTarget.offsetTop) {
 			scrolled = event.delegateTarget.offsetTop;
 		}
-		else if (scrolled >= scrollBarSize - event.delegateTarget.offsetTop) {
+		
+		if (scrolled >= scrollBarSize - event.delegateTarget.offsetTop) {
 			if (typeof event.originalEvent.deltaY != 'undefined' && event.originalEvent.deltaY > 0 || event.originalEvent.wheelDeltaY < 0) {				
 				scrolled = scrollBarSize;
 				progressBar.css('width', '100%');			
 			}
 			else {
-				scrolled -= event.delegateTarget.offsetTop;	
-				var percent = scrolled / scrollBarSize * 100;
-				progressBar.css('width', percent + '%');
+				scrolled -= event.delegateTarget.offsetTop;
+				progressBar.css('width', (scrolled / scrollBarSize * 100) + '%');
 			}
-			
-			event.preventDefault();
-			return false;
-		}
-		
-		var scrollMove = (typeof event.originalEvent.deltaY != 'undefined') ? event.originalEvent.deltaY : -event.originalEvent.wheelDeltaY;
-		scrolled += scrollMove;
-		
-		if (scrolled <= event.delegateTarget.offsetTop) {
-			scrollableDiv.css('top', '0px');
-			progressBar.css('width', '0%');
 		}
 		else {
-			scrollableDiv.css('top', parseInt(scrollableDiv.css('top')) - scrollMove);
-			progressBar.css('width', (scrolled / scrollBarSize * 100) + '%');	
-		}
+			var scrollMove = (typeof event.originalEvent.deltaY != 'undefined') ? event.originalEvent.deltaY : -event.originalEvent.wheelDeltaY;
+			scrolled += scrollMove;
+			
+			if (scrolled <= event.delegateTarget.offsetTop) {
+				scrollableDiv.css('top', '0px');
+				progressBar.css('width', '0%');
+			}
+			else {
+				scrollableDiv.css('top', parseInt(scrollableDiv.css('top')) - scrollMove);
+				progressBar.css('width', (scrolled / scrollBarSize * 100) + '%');	
+			}
+		}			
 		
 		event.preventDefault();
 		return false;
