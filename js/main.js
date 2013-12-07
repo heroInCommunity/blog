@@ -15,6 +15,7 @@ $( document ).ready(function() {
 	});
 	
 	//switch between full and less view modes on main page
+	if($(window).width() < 767) $('#clicker_full').hide();
 	var centralBarWidth = $("#page_central_bar").outerWidth();
 	var leftBarWidth = $("#page_left_bar").outerWidth();
 	
@@ -80,6 +81,12 @@ $( document ).ready(function() {
 		
 		$(this).fadeOut(100);
 		$('#clicker_full').fadeIn(100);
+	});
+	
+	//toogle sidebar
+	$('button.btn[data-toggle="offcanvas"]').click(function() {
+		if($('#page_left_bar').is(':visible')) $('#page_left_bar').hide();
+		else $('#page_left_bar').show();
 	});
 
 	//progress bar functionality on main page
