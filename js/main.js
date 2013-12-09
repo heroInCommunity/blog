@@ -15,6 +15,7 @@ $( document ).ready(function() {
 	});
 	
 	//switch between full and less view modes on main page
+	if($(window).width() < 767) $('#clicker_full').hide();
 	var centralBarWidth = $("#page_central_bar").outerWidth();
 	var leftBarWidth = $("#page_left_bar").outerWidth();
 	
@@ -81,14 +82,28 @@ $( document ).ready(function() {
 		$(this).fadeOut(100);
 		$('#clicker_full').fadeIn(100);
 	});
+	
+	//toogle sidebar
+	$('button.btn[data-toggle="offcanvas"]').click(function() {
+		if($('#page_left_bar').is(':visible')) $('#page_left_bar').hide();
+		else $('#page_left_bar').show();
+	});
 
 	//progress bar functionality on main page
+	var startYPosition = 0;
+	var movedY = 0;
+	$('#scrollable').bind('touchstart', function(event) {
+		var scrolledObj = event.originalEvent.changedTouches[0];
+		startYPosition = parseInt(scrolledObj.clientY);		
+	});
+	
+	
 	var scrollableDiv = $('#scrollable > div');	
 	var progressBar = $('#progressbar');
 	var scrolled = 0;
 	scrollableDiv.css('top', '0px');
 	
-	$('#scrollable').bind('mousewheel touchend DOMMouseScroll', function(event) {
+	$('#scrollable').bind('mousewheel touchend touchmove DOMMouseScroll', function(event) {
 		var scrollBarSize = scrollableDiv.height();
 		
 		if (scrolled <= event.delegateTarget.offsetTop) {
@@ -130,10 +145,15 @@ $( document ).ready(function() {
 		if(typeof scrollEvent.originalEvent.wheelDeltaY != 'undefined') {
 			return -scrollEvent.originalEvent.wheelDeltaY;
 		}
-		else if(typeof scrollEvent.originalEvent.detail != 'undefined') {
+		else if(typeof scrollEvent.originalEvent.detail != 'undefined' && scrollEvent.originalEvent.detail != 0) {
 			return scrollEvent.originalEvent.detail * 30;
 		}
-		return undefined;
+		else if(typeof scrollEvent.originalEvent.changedTouches[0] != 'undefined') {
+			var scrolledObj = scrollEvent.originalEvent.changedTouches[0];
+			movedY = parseInt(scrolledObj.clientY) - startYPosition;
+			return movedY;
+		}
+		return getMovedY(scrollEvent);
 	}	
 	
 	$('#progressbar_nav').click(function(event) {

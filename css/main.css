@@ -142,40 +142,84 @@ footer {
  * --------------------------------------------------
  */
 @media screen and (max-width: 767px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
+	.row-offcanvas {
+	  position: relative;
+	  -webkit-transition: all 0.25s ease-out;
+	  -moz-transition: all 0.25s ease-out;
+	  transition: all 0.25s ease-out;
+	}
+	
+	.row-offcanvas-right
+	.sidebar-offcanvas {
+	  right: -50%; /* 6 columns */
+	}
+	
+	/*.row-offcanvas-left
+	.sidebar-offcanvas {
+	  left: -50%;
+	}*/
+	
+	.row-offcanvas-right.active {
+	  right: 50%; /* 6 columns */
+	}
+	
+	.row-offcanvas-left.active {
+	  left: 50%; /* 6 columns */
+	}
 
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -50%; /* 6 columns */
-  }
+	/*.sidebar-offcanvas {
+	  position: absolute;
+	  top: 0;
+	  width: 50%;
+	}  */
 
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -50%; /* 6 columns */
-  }
-
-  .row-offcanvas-right.active {
-    right: 50%; /* 6 columns */
-  }
-
-  .row-offcanvas-left.active {
-    left: 50%; /* 6 columns */
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 50%; /* 6 columns */
-  }
+	.search-words-group {
+		max-height: 113px;
+		padding: 0 0 0 4px;
+		margin: 22px 0 4px 0;
+		min-height: 36px;
+	}
+	
+	.article-titles {
+		max-height: 112px!important;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.page-left-bar {
+		z-index: 2;
+		display: none;
+	}
+	
+	.sidebar {
+		padding: 0;
+	}
+	
+	.selectize-control {
+		width: 95%;
+	}
+	
+	div.selectize-input {
+		max-height: 100px;
+	}
 }
 
 .search-words-group {
 	height: 245px;
+}
+
+.article-date {
+	position: relative;
+	float: left;
+}
+
+.article-date-name {
+	font-size: 12px;
+}
+
+.article-titles {
+	overflow: auto;
+	max-height: 407px;
 }
 
 .article {
@@ -197,20 +241,6 @@ h1.article-title {
 	font-size: 50px;
 }
 
-.article-date {
-	position: relative;
-	float: left;
-}
-
-.article-date-name {
-	font-size: 12px;
-}
-
-.article-titles {
-	overflow: auto;
-	max-height: 407px;
-}
-
 input.selectized {
 	display: none;
 }
@@ -222,11 +252,7 @@ input.selectized {
 /* Selectize */
 .selectize-input {
 	max-height: 210px;
-	overflow-y: auto;	
-}
-.search-words-group .value {
-	overflow: auto;
-	max-width: 275px;
+	overflow: auto;	
 }
 
 .profile-image-wrapper {
