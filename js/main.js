@@ -1,19 +1,5 @@
 $( document ).ready(function() {
-	
-	//search words on main page
-	$('#search-word').selectize({
-	    delimiter: ',',
-	    persist: false,
-	 	plugins: ['restore_on_backspace', 'remove_button'],
-	    create: function(input) {
-	        return {
-	            value: input,
-	            text: input
-	        };
-	    },
-	     maxItems: 12
-	});
-	
+		
 	//switch between full and less view modes on main page
 	if($(window).width() < 767) $('#clicker_full').hide();
 	var centralBarWidth = $("#page_central_bar").outerWidth();

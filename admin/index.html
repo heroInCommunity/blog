@@ -10,6 +10,8 @@
 		<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
 		<link rel="stylesheet" href="../css/bootstrap.css">
+		<link rel="stylesheet" href="../css/jquery-ui-1.8.13.custom.css">
+		<link rel="stylesheet" href="../css/elrte.full.css">
 		<link rel="stylesheet" href="../css/main.css">
 		<script src="../js/vendor/modernizr-2.7.0.min.js"></script>
 	</head>
@@ -123,8 +125,12 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-9" role="main">
-					
+				<div class="container" role="main">
+					<div class="row row-offcanvas row-offcanvas-right">
+						<div class="col-xs-12 col-sm-9">
+							<div id="elrte_here"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -142,7 +148,27 @@
 		</script>
 		<script src="../js/plugins.js"></script>
 		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/jquery-ui-1.8.13.custom.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+		<script src="../js/elrte.full.js"></script>
+		<script src="../js/i18n/elrte.en.js"></script>
 		<script src="../js/main.js"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+		    $( document ).ready(function() {
+		        var opts = {
+		            lang         : 'en',   // set your language
+		            styleWithCSS : false,
+		            height       : 600,
+		            toolbar      : 'maxi'
+		        };
+		        // create editor
+		        $('#elrte_here').elrte(opts);
+		
+		        // or this way
+		        // var editor = new elRTE(document.getElementById('our-element'), opts);
+		    });
+		</script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
