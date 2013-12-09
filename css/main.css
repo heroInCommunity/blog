@@ -154,11 +154,6 @@ footer {
 	  right: -50%; /* 6 columns */
 	}
 	
-	/*.row-offcanvas-left
-	.sidebar-offcanvas {
-	  left: -50%;
-	}*/
-	
 	.row-offcanvas-right.active {
 	  right: 50%; /* 6 columns */
 	}
@@ -166,12 +161,6 @@ footer {
 	.row-offcanvas-left.active {
 	  left: 50%; /* 6 columns */
 	}
-
-	/*.sidebar-offcanvas {
-	  position: absolute;
-	  top: 0;
-	  width: 50%;
-	}  */
 
 	.search-words-group {
 		max-height: 113px;
@@ -256,18 +245,18 @@ input.selectized {
 }
 
 .profile-image-wrapper {
-	height: 250px;
-	width: 270px;
-	margin-bottom: 25px;
+	height: 80%;
+	width: 100%;
+	margin: 5% 0 10% 0;
 }
 .profile-image-inner {
 	vertical-align: middle;
 	text-align: center;
-	width: 270px;
+	width: 100%;
 }
 .profile-image {
-	max-width: 250px;
-	max-height: 250px;
+	max-width: 80%;
+	max-height: 80%;
 }
 .about-contacts {
 	text-align: left;
