@@ -191,6 +191,19 @@ footer {
 	div.selectize-input {
 		max-height: 100px;
 	}
+	
+	.comments input:not(.input-submit) {
+		width: 100%!important;
+	}
+	.comments textarea {
+		width: 100%!important;
+	}
+	.comments label {
+		margin-right: 10%!important;
+	}
+	.comments-list .comment {
+		width: 100%!important;
+	}
 }
 
 .search-words-group {
@@ -218,6 +231,7 @@ footer {
 div.article-content {
 	overflow-y: hidden;
 	max-height: 434px;
+	margin-bottom: 20px;
 }
 
 div.projects-content, div.about-content {
@@ -265,8 +279,59 @@ input.selectized {
 	font-size: 14px;
 	color: dimgrey;
 	cursor: pointer;
-}   
+}
 
+.comments h3 {
+	border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    padding: 20px 100px 20px 0;
+}
+.comments input:not(.input-submit) {
+	border: 1px solid #DDD;
+	font-family: inherit;
+	font-weight: inherit;
+	font-size: 1em;
+	padding: 8px;
+	width: 70%;
+	border-radius: 3px;
+}
+.comments textarea {
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	width: 70%;
+}
+.comments label {
+	margin-right: 40%;
+}
+.comments-list .comment {
+	border-top: 2px solid #DDD;
+	background: #FFF;
+	float: left;
+	min-height: 85px;
+	width: 70%;
+}
+.comments-list .comment-meta {
+	float: left;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	padding: 14px 10px;
+	width: 20%;
+}
+.comments-list .comment-meta time {
+	display: block;
+	font-size: 12px;
+	color: #999;
+	font-style: italic;
+	padding: 10px 0;
+}
+.comments-list .comment-body {
+	float: left;
+	padding: 10px 10px 0 0;
+	width: 80%;
+	overflow-x: auto;
+}
+.comments-list .comment-body p {
+	margin: 0 0 10px;
+}
 /* Bootstrap */
 
 @media screen and (min-width: 768px) {
