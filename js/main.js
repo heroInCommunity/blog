@@ -2,71 +2,44 @@ $( document ).ready(function() {
 		
 	//switch between full and less view modes on main page
 	if($(window).width() < 767) $('#clicker_full').hide();
-	var centralBarWidth = $("#page_central_bar").outerWidth();
-	var leftBarWidth = $("#page_left_bar").outerWidth();
+	var pageCentralBar = $('#page_central_bar');
+	var centralBarWidth = pageCentralBar.outerWidth();
+	var centralFromLeft = $('#page_central_bar').position().left;
+	var centralFromRight = $('#page_central_bar').position().right;
 	
 	var isClicked = false;
-	$('#clicker_full').click(function() {
+	$('#show_articles').click(function() {
 		if(isClicked) {
 			return false;
 		}
 		isClicked = true;
-		var scrollBarSize = scrollableDiv.height();
 		
-		$(".selectize-input").fadeOut(500);
-		$('#page_left_bar').animate(
-			{
-				width: "5%",
-				opacity: .5
-			},
-			500,
-			"linear"
-		);
-		$("#page_central_bar").animate(
-			{
-				width: "95%"
-			},
-			1000,
-			"linear",
-			function() {
-				isClicked = false;
-				scrollableDiv.css('top', (parseInt(scrollableDiv.css('top')) * scrollableDiv.height() / scrollBarSize) + 'px');
-			}
-		);
-		$(this).fadeOut(100);
-		$('#clicker_less').fadeIn(100);
+		pageCentralBar.parents('.container').animate({'margin-left': $(document).width() * 0.9 + "px"}, 1000, function() {
+			pageCentralBar.click(function() {
+				pageCentralBar.parents('.container').animate({'margin-left': centralFromLeft + "px"}, 1000, function() {
+					pageCentralBar.unbind('click');
+					pageCentralBar.parents('.container').css('margin-left', "auto");
+				});
+			});
+			isClicked = false;
+		});
 	});
 	
-	$('#clicker_less').click(function() {
+	$('#show_comments').click(function() {
 		if(isClicked) {
 			return false;
 		}
 		isClicked = true;
-		var scrollBarSize = scrollableDiv.height();
 		
-		$(".selectize-input").fadeIn(1000);
-		$('#page_left_bar').animate(
-			{
-				width: leftBarWidth + "px",
-				opacity: 1
-			},
-			1000,
-			"linear",
-			function() {
-				isClicked = false;
-				scrollableDiv.css('top', (parseInt(scrollableDiv.css('top')) * scrollableDiv.height() / scrollBarSize) + 'px');
-			}
-		);
-		$("#page_central_bar").animate(
-			{
-				width: centralBarWidth + "px"
-			},
-			500,
-			"linear"
-		);
-		
-		$(this).fadeOut(100);
-		$('#clicker_full').fadeIn(100);
+		pageCentralBar.parents('.container').animate({'margin-right': $(document).width() * 0.9 + "px"}, 1000, function() {
+			pageCentralBar.click(function() {
+				pageCentralBar.parents('.container').animate({'margin-right': centralFromRight + "px"}, 1000, function() {
+					pageCentralBar.unbind('click');
+					pageCentralBar.parents('.container').css('margin-right', "auto");
+				});
+			});
+			isClicked = false;
+		});
 	});
 	
 	//toogle sidebar

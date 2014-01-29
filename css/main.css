@@ -275,10 +275,17 @@ input.selectized {
 .about-contacts {
 	text-align: left;
 }
-.fullscreen-mode {
+.show-comments, .show-articles {
 	font-size: 14px;
 	color: dimgrey;
 	cursor: pointer;
+}
+.show-comments {
+	white-space: nowrap;
+	margin-left: 80%;
+}
+.show-articles {
+	float: left;
 }
 
 .comments h3 {
