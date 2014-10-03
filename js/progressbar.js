@@ -1,18 +1,44 @@
 (function ( $ ) {
 	$.fn.progressbar = function(progressBar, progressbarNav) {
-		var that = this;
-		
-		var startYPosition = 0;
-		var movedY = 0;
-		that.bind('touchstart', function(event) {
-			var scrolledObj = event.originalEvent.changedTouches[0];
-			startYPosition = parseInt(scrolledObj.clientY);		
-		});
-		
-		
-		var scrollableDiv = that.find('div:first-child');
-		var scrolled = 0;
-		scrollableDiv.css('top', '0px');
+	    var that = this;
+	    
+	    var setPercent = function setPercent(percent) {
+	        console.log(percent)
+	        
+            var scrollBarSize = scrollableDiv.height();
+            var scrollableHeight = that.height();
+            
+            progressBar.css('width', percent + '%');
+            
+            scrolled = percent * scrollBarSize / 100;
+            if (scrolled <= scrollableHeight) {
+                scrollableDiv.css('top', '0px');
+            }
+            else if (scrolled >= scrollBarSize - scrollableHeight) {
+                scrollableDiv.css('top', (-scrollBarSize + scrollableHeight) + 'px');
+            }
+            else {
+                scrollableDiv.css('top', -scrolled + 'px'); 
+            }
+        };
+        
+        that.setPercent = setPercent;
+        
+        var startYPosition = 0;
+        var movedY = 0;
+        that.bind('touchstart', function(event) {
+            var scrolledObj = event.originalEvent.changedTouches[0];
+            startYPosition = parseInt(scrolledObj.clientY);     
+        });
+        
+        
+        var scrollableDiv = that.find('div:eq(0)');
+        var scrolled = 0;
+        scrollableDiv.css('top', '0px');
+	    
+	    if (typeof progressBar == 'undefined') {
+	        return that;
+	    }
 		
 		that.bind('mousewheel touchend touchmove DOMMouseScroll', function(event) {
 			var scrollBarSize = scrollableDiv.height();
@@ -67,24 +93,10 @@
 			return getMovedY(scrollEvent);
 		}	
 		
-		$('#progressbar_nav').click(function(event) {
-			var scrollBarSize = scrollableDiv.height();
-			var progressbarWidth = progressbarNav.width();
-			var scrollableHeight = that.height();
-			
+		$('#progressbar_nav').click(function(event) {	
+            var progressbarWidth = progressbarNav.width();		
 			var percent = getX(event) / progressbarWidth * 100;
-			progressBar.css('width', percent + '%');
-			
-			scrolled = percent * scrollBarSize / 100;
-			if (scrolled <= scrollableHeight) {
-				scrollableDiv.css('top', '0px');
-			}
-			else if (scrolled >= scrollBarSize - scrollableHeight) {
-				scrollableDiv.css('top', (-scrollBarSize + scrollableHeight) + 'px');
-			}
-			else {
-				scrollableDiv.css('top', -scrolled + 'px');	
-			}
+			setPercent(percent);
 		});
 		
 		function getX(clickEvent) {
@@ -97,5 +109,7 @@
 			
 			return undefined;
 		}
+		
+		return this;
 	};
 }( jQuery ));

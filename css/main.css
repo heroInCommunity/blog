@@ -313,9 +313,8 @@ input.selectized {
 .comments-list .comment {
 	border-top: 2px solid #DDD;
 	background: #FFF;
-	float: left;
 	min-height: 85px;
-	width: 70%;
+	width: 100%;
 }
 .comments-list .comment-meta {
 	float: left;
@@ -363,6 +362,11 @@ input.selectized {
 @media screen and (min-width: 1400px) {
 	.container {
 		width: 1350px;
+	}
+	
+	.page-left-bar {
+	    position: absolute;
+	    left: -240px;
 	}
 	
 	.container .jumbotron {

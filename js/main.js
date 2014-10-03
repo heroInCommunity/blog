@@ -3,9 +3,14 @@ $( document ).ready(function() {
 	//switch between full and less view modes on main page
 	if($(window).width() < 767) $('#clicker_full').hide();
 	var pageCentralBar = $('#page_central_bar');
-	var centralBarWidth = pageCentralBar.outerWidth();
-	var centralFromLeft = $('#page_central_bar').position().left;
-	var centralFromRight = $('#page_central_bar').position().right;
+	
+	var pageLeftBar = $('#page_left_bar');
+	var leftBarOffset = pageLeftBar.offset();
+	
+	var comments = pageCentralBar.find('.comments');
+	var articleContent = pageCentralBar.find('.article-content');
+	
+	var scrollable = $('#scrollable');
 	
 	var isClicked = false;
 	$('#show_articles').click(function() {
@@ -14,14 +19,16 @@ $( document ).ready(function() {
 		}
 		isClicked = true;
 		
-		pageCentralBar.parents('.container').animate({'margin-left': $(document).width() * 0.9 + "px"}, 1000, function() {
+		pageCentralBar.animate({'margin-left': (-leftBarOffset.left + 20) + "px"}, 500, function() {
+		    pageLeftBar.animate({'left': '0px'}, 500);
+		    
 			pageCentralBar.click(function() {
-				pageCentralBar.parents('.container').animate({'margin-left': centralFromLeft + "px"}, 1000, function() {
+			    pageLeftBar.animate({'left': leftBarOffset.left + 'px'}, 500);
+				pageCentralBar.animate({'margin-left': "0px"}, 500, function() {
 					pageCentralBar.unbind('click');
-					pageCentralBar.parents('.container').css('margin-left', "auto");
+					isClicked = false;
 				});
 			});
-			isClicked = false;
 		});
 	});
 	
@@ -31,14 +38,13 @@ $( document ).ready(function() {
 		}
 		isClicked = true;
 		
-		pageCentralBar.parents('.container').animate({'margin-right': $(document).width() * 0.9 + "px"}, 1000, function() {
-			pageCentralBar.click(function() {
-				pageCentralBar.parents('.container').animate({'margin-right': centralFromRight + "px"}, 1000, function() {
-					pageCentralBar.unbind('click');
-					pageCentralBar.parents('.container').css('margin-right', "auto");
-				});
-			});
-			isClicked = false;
+		articleContent.animate({
+		    scrollTop: comments.offset().top - articleContent.offset().top, 
+		    duration: 1000, 
+		    complete: function() {
+    			scrollable.progressbar().setPercent((comments.offset().top - articleContent.offset().top) / scrollable.find('div:eq(0)').height() * 100);
+			    isClicked = false;
+		      }
 		});
 	});
 	
@@ -49,7 +55,7 @@ $( document ).ready(function() {
 	});
 
 	//progress bar functionality on main page
-	$('#scrollable').progressbar($('#progressbar'), $('#progressbar_nav'));
+	scrollable.progressbar($('#progressbar'), $('#progressbar_nav'));
 	
 });
 
