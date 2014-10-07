@@ -1,14 +1,32 @@
 (function ( $ ) {
-	$.fn.progressbar = function(progressBar, progressbarNav) {
-	    var that = this;
+	$.progressbar = function(element, options) {
+	    var plugin = this;
+	    element = $(element);
 	    
-	    var setPercent = function setPercent(percent) {
-	        console.log(percent)
-	        
+	    var defaults = {};
+	    plugin.settings = {};
+	    
+	    plugin.init = function() {
+            plugin.settings = $.extend({}, defaults, options);
+        };
+        
+        var startYPosition = 0;
+        var movedY = 0;
+        element.bind('touchstart', function(event) {
+            var scrolledObj = event.originalEvent.changedTouches[0];
+            startYPosition = parseInt(scrolledObj.clientY);     
+        });
+        
+        
+        var scrollableDiv = element.find('div:eq(0)');
+        var scrolled = 0;
+        scrollableDiv.css('top', '0px');
+        
+        plugin.setPercent = function setPercent(percent) {
             var scrollBarSize = scrollableDiv.height();
-            var scrollableHeight = that.height();
+            var scrollableHeight = element.height();
             
-            progressBar.css('width', percent + '%');
+            plugin.settings.progressBar.css('width', percent + '%');
             
             scrolled = percent * scrollBarSize / 100;
             if (scrolled <= scrollableHeight) {
@@ -21,26 +39,8 @@
                 scrollableDiv.css('top', -scrolled + 'px'); 
             }
         };
-        
-        that.setPercent = setPercent;
-        
-        var startYPosition = 0;
-        var movedY = 0;
-        that.bind('touchstart', function(event) {
-            var scrolledObj = event.originalEvent.changedTouches[0];
-            startYPosition = parseInt(scrolledObj.clientY);     
-        });
-        
-        
-        var scrollableDiv = that.find('div:eq(0)');
-        var scrolled = 0;
-        scrollableDiv.css('top', '0px');
-	    
-	    if (typeof progressBar == 'undefined') {
-	        return that;
-	    }
 		
-		that.bind('mousewheel touchend touchmove DOMMouseScroll', function(event) {
+		element.bind('mousewheel touchend touchmove DOMMouseScroll', function(event) {
 			var scrollBarSize = scrollableDiv.height();
 			
 			if (scrolled <= event.delegateTarget.offsetTop) {
@@ -50,11 +50,11 @@
 			if (scrolled >= scrollBarSize - event.delegateTarget.offsetTop) {
 				if (getDeltaY(event) > 0) {				
 					scrolled = scrollBarSize;
-					progressBar.css('width', '100%');			
+					plugin.settings.progressBar.css('width', '100%');
 				}
 				else {
 					scrolled -= event.delegateTarget.offsetTop;
-					progressBar.css('width', (scrolled / scrollBarSize * 100) + '%');
+					plugin.settings.progressBar.css('width', (scrolled / scrollBarSize * 100) + '%');
 				}
 			}
 			else {
@@ -63,11 +63,11 @@
 				
 				if (scrolled <= event.delegateTarget.offsetTop) {
 					scrollableDiv.css('top', '0px');
-					progressBar.css('width', '0%');
+					plugin.settings.progressBar.css('width', '0%');
 				}
 				else {
 					scrollableDiv.css('top', parseInt(scrollableDiv.css('top')) - scrollMove);
-					progressBar.css('width', (scrolled / scrollBarSize * 100) + '%');	
+					plugin.settings.progressBar.css('width', (scrolled / scrollBarSize * 100) + '%');
 				}
 			}			
 			
@@ -94,9 +94,9 @@
 		}	
 		
 		$('#progressbar_nav').click(function(event) {	
-            var progressbarWidth = progressbarNav.width();		
+            var progressbarWidth = plugin.settings.progressbarNav.width();		
 			var percent = getX(event) / progressbarWidth * 100;
-			setPercent(percent);
+			plugin.setPercent(percent);
 		});
 		
 		function getX(clickEvent) {
@@ -110,6 +110,16 @@
 			return undefined;
 		}
 		
-		return this;
+		plugin.init();
 	};
+	
+	$.fn.progressbar = function(options) {
+        return this.each(function() {
+            if (undefined == $(this).data('progressbar')) {
+                var plugin = new $.progressbar(this, options);
+                $(this).data('progressbar', plugin);
+            }
+        });
+    };
+    
 }( jQuery ));

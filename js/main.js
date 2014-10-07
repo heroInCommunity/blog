@@ -3,6 +3,7 @@ $( document ).ready(function() {
 	//switch between full and less view modes on main page
 	if($(window).width() < 767) $('#clicker_full').hide();
 	var pageCentralBar = $('#page_central_bar');
+	var centralBarOffset = pageCentralBar.offset();
 	
 	var pageLeftBar = $('#page_left_bar');
 	var leftBarOffset = pageLeftBar.offset();
@@ -19,17 +20,19 @@ $( document ).ready(function() {
 		}
 		isClicked = true;
 		
-		pageCentralBar.animate({'margin-left': (-leftBarOffset.left + 20) + "px"}, 500, function() {
-		    pageLeftBar.animate({'left': '0px'}, 500);
-		    
+		var adder = -pageLeftBar.width() + centralBarOffset.left;
+		adder = adder < 0 ? -adder + 20 + (pageCentralBar.parents('.container').width() - pageCentralBar.width()) / 2 : 0;
+		
+		pageCentralBar.animate({'margin-left': (adder > 0 ? (adder) + "px" : "auto")}, 500, function() {
 			pageCentralBar.click(function() {
-			    pageLeftBar.animate({'left': leftBarOffset.left + 'px'}, 500);
-				pageCentralBar.animate({'margin-left': "0px"}, 500, function() {
-					pageCentralBar.unbind('click');
-					isClicked = false;
-				});
+			    pageLeftBar.css({'left': leftBarOffset.left + 'px'});
+				pageCentralBar.css({'margin': "0 auto 0 auto"});
+				pageCentralBar.unbind('click');
+                isClicked = false;
 			});
 		});
+        
+        pageLeftBar.animate({'left': '0px'}, 500);
 	});
 	
 	$('#show_comments').click(function() {
@@ -37,15 +40,8 @@ $( document ).ready(function() {
 			return false;
 		}
 		isClicked = true;
-		
-		articleContent.animate({
-		    scrollTop: comments.offset().top - articleContent.offset().top, 
-		    duration: 1000, 
-		    complete: function() {
-    			scrollable.progressbar().setPercent((comments.offset().top - articleContent.offset().top) / scrollable.find('div:eq(0)').height() * 100);
-			    isClicked = false;
-		      }
-		});
+		scrollable.data('progressbar').setPercent((comments.offset().top - articleContent.offset().top) / scrollable.find('div:eq(0)').height() * 100);
+		isClicked = false;
 	});
 	
 	//toogle sidebar
@@ -55,7 +51,10 @@ $( document ).ready(function() {
 	});
 
 	//progress bar functionality on main page
-	scrollable.progressbar($('#progressbar'), $('#progressbar_nav'));
+	scrollable.progressbar({
+	    progressBar: $('#progressbar'), 
+	    progressbarNav: $('#progressbar_nav')
+    });
 	
 });
 
